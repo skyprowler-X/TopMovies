@@ -5,7 +5,6 @@ from flask import render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-import requests as req
 from sqlalchemy import desc
 from app.models import Movie
 
