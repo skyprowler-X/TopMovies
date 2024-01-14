@@ -2,11 +2,9 @@ from app import app, db
 import os
 import requests as req
 from flask import render_template, request, redirect, url_for
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
 from sqlalchemy import desc
 from app.models import Movie
+from app.forms import AddForm, EditForm
 
 DATA_API = os.environ.get("DATA_API")
 DB_IMG_URL = "https://image.tmdb.org/t/p/w500/"
@@ -27,17 +25,6 @@ def get_movie_matches(movie_name):
             movies_list.append(movie_fetched)
     print(movies_list)
     return movies_list
-
-
-class EditForm(FlaskForm):
-    rating = StringField("Your rating out of 10. i.e:7.5", validators=[DataRequired()])
-    review = StringField("Your review", validators=[DataRequired()])
-    submit = SubmitField("Done!")
-
-
-class AddForm(FlaskForm):
-    movie_title = StringField("Movie Title", validators=[DataRequired()])
-    submit = SubmitField("Add")
 
 
 @app.route("/")
